@@ -1,6 +1,7 @@
 #!/bin/bash
 
 NGC_API_KEY="$1"
+SCRIPT_DIR=$(pwd)
 
 if [ -z $1 ]; then
     echo ""
@@ -103,10 +104,10 @@ sudo python -m venv /data/venv
 source /data/venv/bin/activate
 export PYCURL_SSL_LIBRARY=openssl
 sudo python -m pip install --upgrade pip
-sudo python -m pip install -r requirements.txt
+sudo python -m pip install -r $SCRIPT_DIR/requirements.txt
 sudo python -m pip install tritonclient[http] transformers
 
 ### Wait for Triton Inference Server to Start ###
 while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' http://localhost:8000/v2/health/ready)" != "200" ]]; do sleep 5; done
 
-sudo python3 infer.py "1 2 3 4 5 6"
+sudo python3 $SCRIPT_DIR/infer.py "1 2 3 4 5 6"
