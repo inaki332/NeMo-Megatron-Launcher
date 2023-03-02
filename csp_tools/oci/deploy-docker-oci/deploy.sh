@@ -27,7 +27,7 @@ sudo nvidia-ctk runtime configure --runtime=docker
 sudo systemctl restart docker
 
 ### Add Local NVMe SSD ###
-sfdisk /dev/nvme0n1 <<EOF
+sudo sfdisk /dev/nvme0n1 <<EOF
 ;
 EOF
 sudo mkfs.ext4 -F /dev/nvme0n1
