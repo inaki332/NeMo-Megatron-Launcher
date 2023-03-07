@@ -1,4 +1,5 @@
 # Deploy NeMo-Megatron on OCI Bare Metal Instance
+Note: This guide is for bare-metal deployments only on the BM.GPU4.8 node shape with Oracle Linux 8 Gen2-GPU image on OCI. It will not function as intended with other node shapes or operating systems. Extended support for other node shapes, including virtualized nodes, is a planned feature.
 
 ## Instance Creation
 1. Navigate to "Instances" on OCI dashboard.
@@ -46,19 +47,20 @@ Note: The NeMo-Megatron Deployment script [deploy.sh](https://github.com/inaki33
     - Runs a sample [infer.py](https://github.com/inaki332/NeMo-Megatron-Launcher/blob/master/csp_tools/oci/deploy-docker-oci/infer.py) program
 
 #### Deployment Instructions
-1. Clone this repo, which contains the deployment and dependency scripts.
+1. Sign up for access to the [NVIDIA NeMo Megatron SDK](https://developer.nvidia.com/nemo/megatron) and retrieve your [NGC API Key](https://docs.nvidia.com/ngc/gpu-cloud/ngc-overview/index.html#generating-api-key).
+2. Clone this repo, which contains the deployment and dependency scripts.
 ```
   git clone https://github.com/inaki332/NeMo-Megatron-Launcher.git
 ```
-2. Navigate to the OCI deployment directory.
+3. Navigate to the OCI deployment directory.
 ```
   cd NeMo-Megatron-Launcher/csp_tools/oci/deploy-docker-oci/
 ```
-3. Execute the [deploy.sh](https://github.com/inaki332/NeMo-Megatron-Launcher/blob/master/csp_tools/oci/deploy-docker-oci/deploy.sh) script.
+4. Execute the [deploy.sh](https://github.com/inaki332/NeMo-Megatron-Launcher/blob/master/csp_tools/oci/deploy-docker-oci/deploy.sh) script, with the NGC API Key retrieved in Step 1 as the command line argument.
 ```
-  ./deploy.sh
+  ./deploy.sh {NGC_API_KEY}
 ```
-4. After the script's completion, a successful output from the Triton Inference Server endpoint is the below.
+5. After the script's completion, a successful output from the Triton Inference Server endpoint is the below.
 ```
   “1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36"
 ```
